@@ -20,7 +20,6 @@ arow = multiarow.AROW()
 # train
 arow.train('label1', np.array([1,2,3], dtype=np.float))
 arow.train('label2', np.array([-1,-2,-3], dtype=np.float))
-...
 
 # classify
 predicted = arow.classify(np.array([4,5,9], dtype=np.float))
