@@ -58,7 +58,8 @@ class AROW(object):
                 y = 1 if c < 0 else 0
             else:
                 y = -1 if c >= 0 else 0
-            self._update(l, x, y, self.w[l], self.v[l])
+            if y != 0:
+                self._update(l, x, y, self.w[l], self.v[l])
 
     def classify(self, x):
         '''Perfom classification based on the current weights
