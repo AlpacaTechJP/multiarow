@@ -2,8 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="multiarow",
-    version="0.0.1",
+    version="0.1",
     url="https://github.com/AlpacaDB/multiarow",
+    download_url='https://github.com/AlpacaDB/multiarow/tarball/0.1',
     description="Multiclass AROW implementation",
     author="AlpacaDB, Inc.",
     license='MIT',
