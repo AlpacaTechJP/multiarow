@@ -32,6 +32,6 @@ labels = arow.list_label()
 # delete a class label
 arow.delete_label(label1)
 
-'''
+```
 
 If you need to persist the current learning result, you can simply use pickle or joblib.
