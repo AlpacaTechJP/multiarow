@@ -61,24 +61,34 @@ class AROW(object):
             if y != 0:
                 self._update(l, x, y, self.w[l], self.v[l])
 
-    def classify(self, x):
+    def classify(self, x, detailed=False):
         '''Perfom classification based on the current weights
         Parameters
         ----------
         x : array-like
             Vector instance to predict
-
+        detailed : boolean
+            If Ture, scores are returned with predicted classes.
+            Defaults to False.
         Returns
         -------
         label : str
-            The most probable class label
+            In case detailed == False. The most probable class label
+        scores : [(label0, score0), (label1, score1), ...]
+            In case detailed == True. List of labels with prediction scores.
         '''
         if len(self.w) == 0:
             return None
-        l, c = max(
-            [(l, self._compute(x, w)) for l, w in self.w.items()],
-            key=lambda a: a[1])
-        return l
+        if detailed:
+            return sorted(
+                [(l, self._compute(x, w)) for l, w in self.w.items()],
+                key=lambda a: a[1],
+                reverse=True)
+        else:
+            l, c = max(
+                [(l, self._compute(x, w)) for l, w in self.w.items()],
+                key=lambda a: a[1])
+            return l
 
     def list_label(self):
         '''List up all the current labels.
