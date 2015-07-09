@@ -67,18 +67,33 @@ class AROW(object):
         ----------
         x : array-like
             Vector instance to predict
-
         Returns
         -------
         label : str
-            The most probable class label
+            The most probable class label. Returns None if it's not trained.
+        '''
+        pred = self.predict(x)
+        if pred is not None:
+            return pred[0][0]
+
+    def predict(self, x):
+        '''Perfom classification based on the current weights
+        Parameters
+        ----------
+        x : array-like
+            Vector instance to predict
+        Returns
+        -------
+        scores : [(label0, score0), (label1, score1), ...]
+            List of labels with prediction scores.
+            Returns None if it's not trained.
         '''
         if len(self.w) == 0:
             return None
-        l, c = max(
+        return sorted(
             [(l, self._compute(x, w)) for l, w in self.w.items()],
-            key=lambda a: a[1])
-        return l
+            key=lambda a: a[1],
+            reverse=True)
 
     def list_label(self):
         '''List up all the current labels.
